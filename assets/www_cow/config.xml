@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+    xmlns:gap = "http://phonegap.com/ns/1.0"
+    id        = "net.modezero.CowTipLine"
+    version   = "1.0.0">
+  <name>Cow Tip Line</name>
+  <description>Cow Tip Line PhoneGap + Parse App</description>
+  <author href="https://modezero.net" email="barrie@modezero.net">Barrie Cooper</author>
+
+  <preference name="orientation" value="portrait" />
+  <preference name="target-device" value="handset" />
+  <preference name="webviewbounce" value="false" />
+  <preference name="prerendered-icon" value="false" />
+  <preference name="stay-in-webview" value="true" />
+  <preference name="ios-statusbarstyle" value="black-opaque" />
+  <preference name="permissions" value="none"/>
+  
+<!--  <icon src="icons/ios/Icon.png" gap:platform="ios" width="57" height="57" />
+  <icon src="icons/ios/Icon-72.png" gap:platform="ios" width="72" height="72" />
+  <icon src="icons/ios/Icon_at_2x.png" gap:platform="ios" width="114" height="114" />
+  <icon src="icons/ios/Icon-144.png" gap:platform="ios" width="144" height="144" />
+
+  <gap:splash src="splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
+  <gap:splash src="splash/ios/Default_at_2x.png" gap:platform="ios" width="640" height="960" />
+
+-->
+  <access origin="http://parse.com" subdomains="true" />
+</widget>

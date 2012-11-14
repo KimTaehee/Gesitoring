@@ -1,0 +1,185 @@
+
+<!DOCTYPE html> 
+<html> 
+   <head> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<title>Local Haiku</title> 
+	<link rel="stylesheet" 
+	    href= "http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<script type="text/javascript"
+	 src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript"
+     src="http://www.parsecdn.com/js/parse-1.1.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js">
+	</script>
+
+	<script src="js/config.js"></script>
+	<script src="js/parseinit.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="js/cordova-1.9.0.js"></script>
+	<script type="text/javascript" src="js/demo.js"></script>
+   </head> 
+
+<body> 
+
+<div data-role="page" id="index">
+
+	<div data-role="header">
+		<h1>Local Haiku: login or register</h1>
+	</div>
+	
+	<div data-role="content">	
+		<ul data-role="controlgroup" data-type="horizontal" data-inset="true">  
+		    <li><a id="register"   data-role="button">Register </a></li>
+		    <li><a id="login"      data-role="button">Login </a></li>
+			<li><a id="logoutLink" data-role="button">Logout </a></li>
+			<li><a id="viewLink" data-role="button">View </a></li>
+			<li><a id="composeLink" data-role="button">Compose </a></li>
+	    </ul>
+		<div id="status"></div>
+		<div id="user">user</div>
+	</div>
+</div>
+
+<div data-role="page" id="composePage">
+
+	<div data-role="header">
+		<h1>Local Haiku: Compose a Haiku</h1>
+	</div>
+
+	<div data-role="content">
+		<div id="updateform">
+			<div id="status">...</div>
+			<div>
+				<div data-role="fieldcontain">
+				    <label for="title">Title:</label>
+					<input type="text" id="title"/>
+				</div>
+				<div data-role="fieldcontain">
+				    <label for="descr">Describe your location briefly</label>
+					<input type="text" id="descr"/>
+				</div>
+				<div data-role="fieldcontain">
+				    <label for="poem">Write your Haiku (short, long, short)</label>
+					<textarea id="poem"></textarea>
+				</div>
+				<input type="submit" id="publish" value="Publish"/>
+			</div>
+		</div>	
+	</div>
+</div>
+
+<div data-role="page" id="viewPage">
+
+	<div data-role="header">
+		<h1>Local Haiku</h1>
+	</div>
+
+	<div data-role="content">
+
+		<div data-type="horizontal">
+			<div id ="user">No user yet</div>
+			<div id="thetime">the time </div>
+			<div id="status"></div>
+		</div>
+		
+		<div data-role="controlgroup" data-type="horizontal">
+			<a id="update" data-role="button">refresh </a>  
+			<a id="composeLink" data-role="button">Compose</a> 
+			<a href="#index" data-role="button">back to index</a> 
+	    </div>	
+	
+		<div>
+			Search String:<input type="text" id="searchfor" value=""/>
+		</div>
+		<hr/>
+		<div id="poems">
+			<ul id="poemList" data-role="listview">
+			</ul>
+		</div>
+		
+	</div>
+</div>
+
+<div data-role="page" id="loginPage">
+
+	<div data-role="header">
+		<h1>Register</h1>
+	</div>
+
+	<div data-role="content">	
+		<div data-role="controlgroup">
+	    	<a id="loginLink" data-role="button">Login</a>  
+	    </div>    
+	    
+	    <div data-role="fieldcontain">	    
+	      <fieldset data-role="controlgroup">
+                <label for="username">
+                   Your username
+                </label>
+                <input type="text" id="username" placeholder=""/>
+            </fieldset>
+            
+             <fieldset data-role="controlgroup">
+                <label for="password">
+                    Your password:
+                </label>
+                <input type="password" id="password" placeholder=""/>
+            </fieldset>
+        </div>
+
+		<div id="status"></div>
+		
+	</div>
+</div>
+
+<div data-role="page" id="registerpage">
+
+	<div data-role="header">
+		<h1>Register</h1>
+	</div>
+
+	<div data-role="content">	
+		<div data-role="controlgroup">
+	    	<a id="registerLink" data-role="button">Register</a>  
+	    </div>    
+	    
+	    <div data-role="fieldcontain">
+	    
+	      <fieldset data-role="controlgroup">
+                <label for="email">
+                   Your email address:
+                </label>
+                <input type="text" id="email" placeholder=""/>
+            </fieldset>
+            
+             <fieldset data-role="controlgroup">
+                <label for="password">
+                    Pick a password:
+                </label>
+                <input type="password" id="password" placeholder=""/>
+            </fieldset>
+
+             <fieldset data-role="controlgroup">
+                <label for="password2">
+                    Retype password:
+                </label>
+                <input type="password" id="password2" placeholder=""/>
+            </fieldset>
+            
+            <fieldset data-role="controlgroup">
+                <label for="username">
+                    Pick a username
+                </label>
+                <input type="text" id="username" placeholder=""/>
+            </fieldset>
+        </div>
+
+		<div id="status"></div>
+		
+	</div>
+</div>
+
+
+</body>
+</html>

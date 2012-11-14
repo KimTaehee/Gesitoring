@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Client Tests</title>
+<script type="text/javascript" src="../HTTPRequest.js"></script>
+<script type="text/javascript">
+
+//stop functions
+	//HTTPRequest.stopID(1);
+	//HTTPRequest.stopAll();
+	//HTTPRequest.stopTag('untagged');
+	
+//callbacks
+
+function newRequestID(tag, id)
+{
+	console.log('new id: ' + tag + ' , ' + id);
+}
+
+HTTPRequest.setnewRequestCallback(newRequestID);
+
+function processedID(tag, id)
+{
+	console.log('processed: ' + tag + ' , ' + id);
+}
+
+HTTPRequest.setProcessedCallback(processedID);
+
+function ajaxLoaderStart()
+{
+	console.log('Started');
+}
+
+HTTPRequest.setAjaxStart(ajaxLoaderStart);
+
+function ajaxLoaderStop()
+{
+	console.log('Stopped');
+}
+
+HTTPRequest.setAjaxStop(ajaxLoaderStop);
+
+function test_Get()
+{
+	var reqID = HTTPRequest.get('http://computer.seoultech.ac.kr/index.jsp', function(status, headers, content)
+	{
+		console.log(status, headers, content);
+	}, {TAG: 'test'});
+	
+	console.log(reqID);
+	
+	return false;
+}
+
+function test_LongGet()
+{
+	var reqID = HTTPRequest.get('http://computer.seoultech.ac.kr/index.jsp', function(status, headers, content)
+	{
+		console.log(status, headers, content);
+	});
+	
+	console.log(reqID);
+	
+	return false;
+}
+
+function test_Post()
+{
+	HTTPRequest.post('http://computer.seoultech.ac.kr/index.jsp', {hello: 'world'} ,function(status, headers, content)
+	{
+		console.log(status, headers, content);
+	});
+	return false;
+}
+
+function test_JSON()
+{
+	HTTPRequest.get('http://computer.seoultech.ac.kr/index.jsp', function(status, headers, content)
+	{
+		console.log(status, headers, content);
+	},{DATATYPE: 'json'});
+}
+</script>
+</head>
+<body>
+<button onclick="test_Get()">Get</button>&nbsp;<button onclick="test_LongGet()">Long Get</button>&nbsp;<button onclick="test_Post()">Post</button>&nbsp;<button onclick="test_JSON()">JSON</button>
+</body>
+</html>

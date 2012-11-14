@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<title>연습이다 개갞꺄</title>
+	<script>
+		function test_Get()
+		{
+			//XMLHttpRequest 객체생성
+			var request = new XMLHttpRequest();
+			request.open('GET', 'http://computer.seoultech.ac.kr/index.jsp', false) 
+			
+			//Ajax를 수행
+			request.send();
+			
+			//출력
+			alert(request.responseText);
+		}
+	</script>
+</head>
+<body>
+난 김태희고 이건 버튼이다.
+<button onclick="test_Get()">Get</button>
+</body>
+</html>
