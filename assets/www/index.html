@@ -1,24 +1,58 @@
 <!doctype html>
 <html>
 <head>
-	<title>연습이다 개갞꺄</title>
+	<title>연습이다 개갞개갞</title>
 	<script>
-		function test_Get()
+		var str1;
+		var str2;
+		
+		function test_Get1(txtUrl)
 		{
-			//XMLHttpRequest 객체생성
+		//alert(txtUrl);
+			//XMLHttpRequest 객체생성, open(,,true)는 비동기 방식
 			var request = new XMLHttpRequest();
-			request.open('GET', 'http://computer.seoultech.ac.kr/index.jsp', false) 
+			request.open('GET', txtUrl, false)  
+			
 			
 			//Ajax를 수행
 			request.send();
 			
 			//출력
-			alert(request.responseText);
+			alert(request.responseText); //msgbox로
+			//document.write = request.responseText; //document.body.innerText , innerHTML도 있음
+			str1 = request.responseText;
 		}
+		function test_Get2(txtUrl)
+		{
+		//alert(txtUrl);
+			//XMLHttpRequest 객체생성, open(,,true)는 비동기 방식
+			var request = new XMLHttpRequest();
+			request.open('GET', txtUrl, false)  
+			
+			
+			//Ajax를 수행
+			request.send();
+			
+			//출력
+			alert(request.responseText); //msgbox로
+			//document.body.innerText = request.responseText; //body로
+			str2 = request.responseText;
+			
+			if (str1 == str2) { alert("같은 내용이야"); }
+			else { alert("다른 내용이야"); }
+		}		
 	</script>
 </head>
 <body>
-난 김태희고 이건 버튼이다.
-<button onclick="test_Get()">Get</button>
+이건 텍스트1..
+<p><input type="text"  id="txtUrl1" value="http://dormitory.snut.ac.kr/board/skin/popup/basic/viewpop.skin.php?po_id=17"/> <p>
+버튼1.
+<p><button onClick="test_Get1(txtUrl1.value)">Get</button></p>
+이건 텍스트2..
+<p><input type="text"  id="txtUrl2" value="http://dormitory.snut.ac.kr/board/skin/popup/basic/viewpop.skin.php?po_id=17"/> </p>
+버튼2.
+<p><button onClick="test_Get2(txtUrl2.value)">Get</button></p>
+<!-- ec자게 ok. 컴공과 메인 ok  -->
+
 </body>
 </html>

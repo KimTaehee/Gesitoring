@@ -32,4 +32,3 @@ public class Gesitoring extends DroidGap
         super.loadUrl("file:///android_asset/www/index.html");
     }
 }
-
