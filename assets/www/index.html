@@ -5,53 +5,164 @@
 	<script>
 		var str1;
 		var str2;
+		var str1len;
+		var str2len;
+		var index1;
+		var index2;
+		var substring1;
+		var substring2;
 		
-		function test_Get1(txtUrl)
+		function test_Get(txtUrl1,txtUrl2)
 		{
 		//alert(txtUrl);
 			//XMLHttpRequest 객체생성, open(,,true)는 비동기 방식
-			var request = new XMLHttpRequest();
-			request.open('GET', txtUrl, false)  
+			var request1 = new XMLHttpRequest();
+			request1.open('GET', txtUrl1, false)  
 			
+			request1.send(); //Ajax를 수행
 			
-			//Ajax를 수행
-			request.send();
+			str1 = request1.responseText;
 			
-			//출력
-			alert(request.responseText); //msgbox로
-			//document.write = request.responseText; //document.body.innerText , innerHTML도 있음
-			str1 = request.responseText;
-		}
-		function test_Get2(txtUrl)
-		{
-		//alert(txtUrl);
-			//XMLHttpRequest 객체생성, open(,,true)는 비동기 방식
-			var request = new XMLHttpRequest();
-			request.open('GET', txtUrl, false)  
+			/* str1 text 파싱부 ㅡ 나중에 code refactoring 해야 함 */
+			{ 
+				/* 전부 다 소문자로 ㅡ 비교하기 위함 */
+				str1 = str1.toLowerCase();
+				
+				/* 꺄아 ㅡ 주석을 제거하자 ㅡ ^ㅡ^* */
+				while (str1.search("<!--") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str1.indexOf("<!--");
+					index2 = str1.indexOf("-->");
+				
+					substring1 = str1.substring(0,index1);
+					substring2 = str1.substring(index2+3,str1.length); //+3은 "-->" 의 length
+				
+					str1 = substring1.concat(substring2);
+				}
+				
+				/* BODY 추출 ㅋ_ㅋ */
+				index1 = str1.indexOf("<body");
+				index2 = str1.indexOf("</body>");
+				str1 = str1.substring(index1,index2+7); //+7은 </body의 length
+				/* 꺄아 ㅡ script를 제거하자 ㅡ ^ㅡ^* */
+				while (str1.search("<script") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str1.indexOf("<script");
+					index2 = str1.indexOf("</scr" + "ipt>"); //그냥 쓰면 스크립트가 그냥 끝나버림 ... 뭥미???
+				
+					substring1 = str1.substring(0,index1);
+					substring2 = str1.substring(index2+9,str1.length); //+9은 </스크립트> 의 length
+				
+					str1 = substring1.concat(substring2);
+				}
+				
+				/* 꺄아 ㅡ style을 제거하자 ㅡ ㅎㅎ*/
+				while (str1.search("<style") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str1.indexOf("<style");
+					index2 = str1.indexOf("</style>"); //그냥 쓰면 스크립트가 그냥 끝나버림 ... 뭥미???
+				
+					substring1 = str1.substring(0,index1);
+					substring2 = str1.substring(index2+8,str1.length); //+8 </style> length
+				
+					str1 = substring1.concat(substring2);
+				}
+				
+				/* tag 제거 < -- > */
+				while (str1.search("<") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str1.indexOf("<");
+					index2 = str1.indexOf(">"); //그냥 쓰면 스크립트가 그냥 끝나버림 ... 뭥미???
+				
+					substring1 = str1.substring(0,index1);
+					substring2 = str1.substring(index2+1,str1.length); //+8 </style> length
+				
+					str1 = substring1.concat(substring2);
+				}
+			}
+			console.log(str1);			
+			request1.abort();
 			
+			var request2 = new XMLHttpRequest();
+			request2.open('GET', txtUrl2, false)  
 			
-			//Ajax를 수행
-			request.send();
-			
-			//출력
-			alert(request.responseText); //msgbox로
-			//document.body.innerText = request.responseText; //body로
-			str2 = request.responseText;
+			request2.send();
+			str2 = request2.responseText;
+
+
+			/* str2 text 파싱부 ㅡ 나중에 code refactoring 해야 함 */
+			{ 
+				/* 전부 다 소문자로 ㅡ 비교하기 위함 */
+				str2 = str2.toLowerCase();
+				
+				/* 꺄아 ㅡ 주석을 제거하자 ㅡ ^ㅡ^* */
+				while (str2.search("<!--") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str2.indexOf("<!--");
+					index2 = str2.indexOf("-->");
+				
+					substring1 = str2.substring(0,index1);
+					substring2 = str2.substring(index2+3,str2.length); //+3은 "-->" 의 length
+				
+					str2 = substring1.concat(substring2);
+				}
+				
+				/* BODY 추출 ㅋ_ㅋ */
+				index1 = str2.indexOf("<body");
+				index2 = str2.indexOf("</body>");
+				str2 = str2.substring(index1,index2+7); //+7은 </body의 length
+				/* 꺄아 ㅡ script를 제거하자 ㅡ ^ㅡ^* */
+				while (str2.search("<script") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str2.indexOf("<script");
+					index2 = str2.indexOf("</scr" + "ipt>"); //그냥 쓰면 스크립트가 그냥 끝나버림 ... 뭥미???
+				
+					substring1 = str2.substring(0,index1);
+					substring2 = str2.substring(index2+9,str2.length); //+9은 </스크립트> 의 length
+				
+					str2 = substring1.concat(substring2);
+				}
+				
+				/* 꺄아 ㅡ style을 제거하자 ㅡ ㅎㅎ*/
+				while (str2.search("<style") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str2.indexOf("<style");
+					index2 = str2.indexOf("</style>"); //그냥 쓰면 스크립트가 그냥 끝나버림 ... 뭥미???
+				
+					substring1 = str2.substring(0,index1);
+					substring2 = str2.substring(index2+8,str2.length); //+8 </style> length
+				
+					str2 = substring1.concat(substring2);
+				}
+				
+				/* tag 제거 < -- > */
+				while (str2.search("<") != -1) //찾지 못했으면 -1 반환
+				{
+					index1 = str2.indexOf("<");
+					index2 = str2.indexOf(">"); //그냥 쓰면 스크립트가 그냥 끝나버림 ... 뭥미???
+				
+					substring1 = str2.substring(0,index1);
+					substring2 = str2.substring(index2+1,str2.length); //+8 </style> length
+				
+					str2 = substring1.concat(substring2);
+				}
+			}
+			console.log(str2);	
+			request2.abort();
 			
 			if (str1 == str2) { alert("같은 내용이야"); }
 			else { alert("다른 내용이야"); }
-		}		
+			
+		}
 	</script>
 </head>
 <body>
 이건 텍스트1..
-<p><input type="text"  id="txtUrl1" value="http://dormitory.snut.ac.kr/board/skin/popup/basic/viewpop.skin.php?po_id=17"/> <p>
-버튼1.
-<p><button onClick="test_Get1(txtUrl1.value)">Get</button></p>
+<p><input type="text"  id="txtUrl1" value="http://203.246.81.237/~ec/xe/index.php?mid=ec_main"/> <p>
 이건 텍스트2..
-<p><input type="text"  id="txtUrl2" value="http://dormitory.snut.ac.kr/board/skin/popup/basic/viewpop.skin.php?po_id=17"/> </p>
-버튼2.
-<p><button onClick="test_Get2(txtUrl2.value)">Get</button></p>
+<p><input type="text"  id="txtUrl2" value="http://203.246.81.237/~ec/xe/index.php?mid=ec_main"/> </p>
+버튼1.
+<p><button onClick="test_Get(txtUrl1.value, txtUrl2.value)">Get</button></p>
 <!-- ec자게 ok. 컴공과 메인 ok  -->
 
 </body>
